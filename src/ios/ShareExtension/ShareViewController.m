@@ -158,6 +158,7 @@
     [self setup];
     [self debug:@"[viewDidLoad]"];
 
+    /*
     BOOL isLoggedIn = [self.userDefaults boolForKey:@"loggedIn"];
 
     if (!isLoggedIn) {
@@ -181,6 +182,7 @@
         [self presentViewController:alert animated:YES completion: nil];
         return;
     }
+    */
 
     __block int remainingAttachments = ((NSExtensionItem*)self.extensionContext.inputItems[0]).attachments.count;
     __block NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -192,6 +194,7 @@
 
     for (NSItemProvider* itemProvider in ((NSExtensionItem*)self.extensionContext.inputItems[0]).attachments) {
         [self debug:[NSString stringWithFormat:@"item provider registered indentifiers = %@", itemProvider.registeredTypeIdentifiers]];
+        /*
         // URL case
         if ([itemProvider hasItemConformingToTypeIdentifier:@"public.url"]) {
             [itemProvider loadItemForTypeIdentifier:@"public.url" options:nil completionHandler: ^(NSURL* item, NSError *error) {
@@ -233,7 +236,8 @@
             }];
         }
         // IMAGE case
-        else if ([itemProvider hasItemConformingToTypeIdentifier:@"public.image"]) {
+        else */
+        if ([itemProvider hasItemConformingToTypeIdentifier:@"public.image"]) {
             [self debug:[NSString stringWithFormat:@"item provider = %@", itemProvider]];
 
             [itemProvider loadItemForTypeIdentifier:@"public.image" options:nil completionHandler: ^(NSURL* item, NSError *error) {

@@ -187,6 +187,7 @@ static NSDictionary* launchOptions = nil;
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.handlerCallback];
 }
 
+/*
 - (void) setLoggedIn:(CDVInvokedUrlCommand*)command {
     BOOL value = [command argumentAtIndex:0];
     [self.userDefaults setBool:value forKey:@"loggedIn"];
@@ -195,6 +196,7 @@ static NSDictionary* launchOptions = nil;
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
+*/
 
 // Initialize the plugin
 - (void) init:(CDVInvokedUrlCommand*)command {
