@@ -276,6 +276,7 @@
         // PDF
         else if ([itemProvider hasItemConformingToTypeIdentifier:@"com.adobe.pdf"]) {
             [self debug:[NSString stringWithFormat:@"item provider = %@", itemProvider]];
+            [self debug:[NSString stringWithFormat:@"type com.adobe.pdf"]];
 
             [itemProvider loadItemForTypeIdentifier:@"com.adobe.pdf" options:nil completionHandler: ^(NSURL* item, NSError *error) {
                 --remainingAttachments;
