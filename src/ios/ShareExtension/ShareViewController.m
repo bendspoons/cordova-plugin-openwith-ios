@@ -268,6 +268,43 @@
                 }
             }];
         }
+        // PDF
+        else if ([itemProvider hasItemConformingToTypeIdentifier:@"com.adobe.pdf"]) {
+            [self debug:[NSString stringWithFormat:@"item provider = %@", itemProvider]];
+
+            [itemProvider loadItemForTypeIdentifier:@"com.adobe.pdf" options:nil completionHandler: ^(NSURL* item, NSError *error) {
+                --remainingAttachments;
+                NSData *data = [NSData dataWithContentsOfURL:(NSURL*)item];
+                NSString *base64 = [data convertToBase64];
+                NSString *suggestedName = item.lastPathComponent;
+
+                NSString *uti = @"com.adobe.pdf";
+
+                NSString *registeredType = nil;
+                if ([itemProvider.registeredTypeIdentifiers count] > 0) {
+                    registeredType = itemProvider.registeredTypeIdentifiers[0];
+                } else {
+                    registeredType = uti;
+                }
+
+                NSString *mimeType =  [self mimeTypeFromUti:registeredType];
+
+                NSDictionary *dict = @{
+                                           @"text" : self.contentText,
+                                           @"data" : base64,
+                                           @"uti"  : uti,
+                                           @"utis" : itemProvider.registeredTypeIdentifiers,
+                                           @"name" : suggestedName,
+                                           @"type" : mimeType
+                                      };
+
+                [items addObject:dict];
+                if (remainingAttachments == 0) {
+                    [self sendResults:results];
+                }
+            }];
+        }
+        // PDF
         else {
             [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
         }
