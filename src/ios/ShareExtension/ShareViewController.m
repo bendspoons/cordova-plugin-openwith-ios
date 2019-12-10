@@ -238,7 +238,8 @@
         // IMAGE case
         else */
         if ([itemProvider hasItemConformingToTypeIdentifier:@"public.image"]) {
-            [self debug:[NSString stringWithFormat:@"item provider = %@", itemProvider]];
+          [self debug:[NSString stringWithFormat:@"item provider = %@", itemProvider]];
+          [self debug:[NSString stringWithFormat:@"type public.image"]];
 
             [itemProvider loadItemForTypeIdentifier:@"public.image" options:nil completionHandler: ^(NSURL* item, NSError *error) {
                 --remainingAttachments;
