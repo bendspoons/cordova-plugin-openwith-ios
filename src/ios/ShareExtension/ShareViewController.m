@@ -152,9 +152,12 @@
 }
 - (void) viewDidAppear:(BOOL)animated {
     [self.view endEditing:YES];
+/*
+https://github.com/EternallLight/cordova-plugin-openwith-ios/issues/12#issuecomment-449569501
 }
 
 - (void) viewDidLoad {
+*/
     [self setup];
     [self debug:@"[viewDidLoad]"];
 
